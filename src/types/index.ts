@@ -1,0 +1,1 @@
+export type Menu = {name: string; link: string; current: boolean}
