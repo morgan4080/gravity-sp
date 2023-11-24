@@ -22,7 +22,7 @@
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "skipLibCheck": false
+    "skipLibCheck": true
   },
   "include": ["src", ".src/test/setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
