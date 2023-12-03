@@ -1,6 +1,23 @@
 import CalcIcon from "@/assets/calculator-icon.svg";
+import { Input } from "@/components/form/input.tsx";
+import { FormControl, FormField, FormItem } from "@/components/form/Form.tsx";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+type BMIFormValues = {};
+
+const detailsFormSchema = z.object({
+  height: z.string({
+    required_error: "Please add a topic.",
+  }),
+});
 
 const BmiCalculator = () => {
+  const form = useForm<BMIFormValues>({
+    resolver: zodResolver(detailsFormSchema),
+    defaultValues: {},
+  });
   return (
     <div className="bg-[#2B2024] self-center z-[1] w-full -mt-28 pl-20 pt-11 pb-12 max-md:max-w-full max-md:px-5">
       <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -44,14 +61,25 @@ const BmiCalculator = () => {
               <div className="flex items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap">
                 <div className="grid grid-cols-2 gap-6 w-full">
                   <div className="bg-zinc-50 bg-opacity-20 flex grow basis-[0%] flex-col">
-                    <input
-                      type="text"
+                    {/*<FormField
+                      control={form.control}
+                      name="height"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />*/}
+                    <Input
+                      type="number"
                       placeholder="FIT"
                       className="text-neutral-50 text-2xl font-bold leading-7 pt-5 pb-3.5 px-3.5 opacity-50 whitespace-nowrap bg-transparent focus-visible:outline-0"
                     />
                   </div>
                   <div className="bg-zinc-50 bg-opacity-20 flex grow basis-[0%] flex-col">
-                    <input
+                    <Input
                       type="text"
                       placeholder="IN"
                       className="text-neutral-50 text-2xl font-bold leading-7 pt-5 pb-3.5 px-4 opacity-50 whitespace-nowrap bg-transparent focus-visible:outline-0"
@@ -63,7 +91,7 @@ const BmiCalculator = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-6 w-full">
                   <div className="bg-zinc-50 bg-opacity-20 flex grow basis-[0%] flex-col col-span-2">
-                    <input
+                    <Input
                       type="text"
                       placeholder="KG"
                       className="text-neutral-50 text-2xl font-bold leading-7 pt-5 pb-3.5 px-3.5 opacity-50 whitespace-nowrap bg-transparent focus-visible:outline-0"
